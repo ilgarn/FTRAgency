@@ -1,0 +1,101 @@
+﻿@model KareAjans.BLL.ViewModels.EmployeeAddressVM
+
+
+@{
+    ViewBag.Title = "Employee Details";
+    Layout = "~/Areas/AdminPaneli/Views/Shared/_Layout.cshtml";
+}
+
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+
+                <div class="card card-primary">
+                    <div class="card-header">
+                        <h3 class="card-title">  Employee Details: @Html.DisplayFor(model => model.Employee.UserName)</h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body">
+                        <strong> Name</strong>
+                        <p>
+                            @Html.DisplayFor(model => model.Employee.FirstName)
+                        </p>
+                        <hr>
+                        <strong> Middle Name</strong>
+                        <p>
+                            @if (Model.Employee.MiddleName == null)
+                            {
+                                <text>-</text>
+                            }
+                            @Html.DisplayFor(model => model.Employee.MiddleName)
+
+                        </p>
+                        <hr>
+                        <strong> Surname</strong>
+                        <p>
+                            @Html.DisplayFor(model => model.Employee.LastName)
+                        </p>
+                        <hr>
+                        <strong> Title</strong>
+                        <p>@Html.DisplayFor(model => model.Employee.Title)</p>
+                        <hr>
+                        <strong> Department</strong>
+                        <p>@Html.DisplayFor(model => model.Employee.Department)</p>
+                        <hr>
+                        <strong> Branch</strong>
+                        <p>@Html.DisplayFor(model => model.Employee.Branch)</p>
+                        <hr>
+                        <strong> User Name</strong>
+                        <p>@Html.DisplayFor(model => model.Employee.UserName)</p>
+                        <hr>
+                        <strong> Role</strong>
+                        <p>@Html.DisplayFor(model => model.Employee.UserRole)</p>
+                        <hr>
+                        <strong> Email</strong>
+                        <p>@Html.DisplayFor(model => model.Employee.Email)</p>
+                        <hr>
+                        <strong> Age</strong>
+                        <p>
+                            @{
+                                var age = DateTime.Now.Year - Model.Employee.Birthdate.Year;
+                                @age; }
+                        </p>
+                        <hr>
+                        <strong> Phone Number</strong>
+                        <p>@Html.DisplayFor(model => model.Employee.PhoneNumber1)</p>
+                        <hr>
+                        <strong> Address Line</strong>
+                        <p>@Html.DisplayFor(model => model.Address.AddressLine)</p>
+                        <hr>
+                        <strong> District</strong>
+                        <p>@Html.DisplayFor(model => model.Address.District)</p>
+                        <hr>
+                        <strong> City</strong>
+                        <p>@Html.DisplayFor(model => model.Address.City)</p>
+                        <hr>
+                        <strong> Country</strong>
+                        <p>@Html.DisplayFor(model => model.Address.Country)</p>
+                        <hr>
+                        <strong> Status</strong>
+                        <p>@Html.DisplayFor(model => model.Employee.Status)</p>
+
+                    </div>
+                    <!-- /.card-body -->
+
+                    <div class="card-footer">
+                        <h2>Actions</h2>
+
+                        <a href="@Url.Action("Update", "Employee", new { id = Model.Employee.Id })" class="btn btn-app">
+                            <i class="fa fa-edit"></i> Edit
+                        </a>
+                        <a href="@Url.Action("Index", "Employee")" class="btn btn-app">
+                            <i class="fa fa-arrow-left"></i> Back to List
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+

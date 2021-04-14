@@ -1,0 +1,129 @@
+﻿@model KareAjans.BLL.ViewModels.ModelVM
+@{
+    ViewBag.Title = "Delete Model";
+    Layout = "~/Areas/AdminPaneli/Views/Shared/_Layout.cshtml";
+}
+
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+
+                <div class="card card-primary">
+                    <div class="card-header">
+                        <h3 class="card-title">Delete Model: @Html.DisplayFor(model => model.UserName)</h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body">
+                        <strong> Name</strong>
+                        <p>
+                            @Html.DisplayFor(model => model.FirstName)
+                        </p>
+                        <hr>
+                        <strong> Middle Name</strong>
+                        <p>
+                            @if (Model.MiddleName == null)
+                            {
+                                <text>-</text>
+                            }
+                            @Html.DisplayFor(model => model.MiddleName)
+
+                        </p>
+                        <hr>
+                        <strong> Surname</strong>
+                        <p>
+                            @Html.DisplayFor(model => model.LastName)
+                        </p>
+                        <hr>
+                        <strong> User Name</strong>
+                        <p>@Html.DisplayFor(model => model.UserName)</p>
+                        <hr>
+                        <strong> User Role</strong>
+                        <p>@Html.DisplayFor(model => model.UserRole)</p>
+                        <hr>
+                        <strong> Email</strong>
+                        <p>@Html.DisplayFor(model => model.Email)</p>
+                        <hr>
+                        <strong> Age</strong>
+                        <p>
+                            @{
+                                var age = DateTime.Now.Year - Model.Birthdate.Year;
+                                @age; }
+                        </p>
+                        <hr>
+                        <strong> Phone Number</strong>
+                        <p>@Html.DisplayFor(model => model.PhoneNumber1)</p>
+                        <hr>
+                        <strong> Shoe Size</strong>
+                        <p>@Html.DisplayFor(model => model.ShoeSize)</p>
+                        <hr>
+                        <strong> Body Size</strong>
+                        <p>@Html.DisplayFor(model => model.BodySize)</p>
+                        <hr>
+                        <strong> Weight</strong>
+                        <p>@Html.DisplayFor(model => model.Weight)</p>
+                        <hr>
+                        <strong> Height</strong>
+                        <p>@Html.DisplayFor(model => model.Height)</p>
+                        <hr>
+                        <strong> Hair Color</strong>
+                        <p>@Html.DisplayFor(model => model.HairColor)</p>
+                        <hr>
+                        <strong> Eye Color</strong>
+                        <p>@Html.DisplayFor(model => model.EyeColor)</p>
+                        <hr>
+                        <strong> Travel Availaibility</strong>
+                        <p>@Html.DisplayFor(model => model.TravelAvailability)</p>
+                        <hr>
+                        <strong> Driving Licence</strong>
+                        <p>@Html.DisplayFor(model => model.DrivingLicence)</p>
+                        <hr>
+                        <strong> Category</strong>
+                        <p>@Html.DisplayFor(model => model.Category)</p>
+                        <hr>
+                        <strong> IsWorking</strong>
+                        <p>@Html.DisplayFor(model => model.IsWorking)</p>
+                        <hr>
+                        <strong> Address Line</strong>
+                        <p>@Html.DisplayFor(model => model.Address.AddressLine)</p>
+                        <hr>
+                        <strong> District</strong>
+                        <p>@Html.DisplayFor(model => model.Address.District)</p>
+                        <hr>
+                        <strong> City</strong>
+                        <p>@Html.DisplayFor(model => model.Address.City)</p>
+                        <hr>
+                        <strong> Country</strong>
+                        <p>@Html.DisplayFor(model => model.Address.Country)</p>
+                        <hr>
+                        <strong> Status</strong>
+                        <p>@Html.DisplayFor(model => model.Status)</p>
+                        @*<hr>
+                        <strong> Created Date</strong>
+                        <p>@Html.DisplayFor(model => model.CreatedDate)</p>*@
+
+                    </div>
+                    <!-- /.card-body -->
+
+                    <div class="card-footer">
+                        <h2>Actions</h2>
+                        @using (Html.BeginForm())
+                        {
+                            @Html.AntiForgeryToken()
+
+                            <div class="card-footer">
+                                <div>
+                                    <button type="submit" value="Delete" class="btn btn-danger">Delete</button>&nbsp;&nbsp;&nbsp;
+                                    @Html.ActionLink("Back To List", "Index", null, new { @class = "btn btn-warning" })
+                                </div>
+                            </div>
+
+                        }
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+

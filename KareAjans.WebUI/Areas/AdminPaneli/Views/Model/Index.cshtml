@@ -1,0 +1,141 @@
+﻿@model IEnumerable<KareAjans.BLL.ViewModels.ModelVM>
+
+@{
+    ViewBag.Title = "Model Management";
+    Layout = "~/Areas/AdminPaneli/Views/Shared/_Layout.cshtml";
+}
+
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>Model Management</h1>
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+<!-- Main content -->
+<section class="content">
+    <div class="row">
+        <div class="col-12">
+            <!-- /.card -->
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Model List</h3>
+                </div>
+                <!-- /.card-header -->
+                <div class="card-body">
+                    <div class="row">
+                        <div>
+                            @Html.ActionLink("Create Model", "Create", null, new { @class = "btn btn-info" })
+                        </div>
+                        <div class="ml-auto">
+                            @using (Html.BeginForm())
+                            {
+                                <span>Show Deleted</span> @Html.CheckBox("showDeleted")
+                                @:&nbsp;&nbsp;<input type="submit" value="Refresh" class="btn btn-info" />
+                            }
+                        </div>
+                    </div>
+                    <hr />
+                    <table id="example1" class="table table-bordered table-hover table-sm" style="width:100%; font-size:x-small; display:compact">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th>Name</th>
+                                <th>Surname</th>
+                                <th>User Name</th>
+                                <th>User Role</th>
+                                <th>Email</th>
+                                <th>Gender</th>
+                                <th>Age</th>
+                                <th>Phone Number</th>
+                                <th>Shoe Size</th>
+                                <th>Body Size</th>
+                                <th>Height</th>
+                                <th>Weight</th>
+                                <th>Hair Color</th>
+                                <th>Eye Color</th>
+                                <th>Travel Avail.</th>
+                                <th>Driving Lic.</th>
+                                <th>Category</th>
+                                <th>Is Working</th>
+                                <th>City</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (KareAjans.BLL.ViewModels.ModelVM item in Model)
+                            {
+                            <tr>
+                                <td>
+                                    @{var fullName = (@item.FirstName + " " + @item.MiddleName).ToString();
+                                        @fullName }
+                                </td>
+                                <td>@item.LastName</td>
+                                <td>@item.UserName</td>
+                                <td>@item.UserRole</td>
+                                <td>@item.Email</td>
+                                <td>@item.Gender</td>
+                                <td>
+                                    @{var age = DateTime.Now.Year - item.Birthdate.Year;
+                                        @age; }
+                                </td>
+                                <td>@item.PhoneNumber1</td>
+                                <td>@item.ShoeSize</td>
+                                <td>@item.BodySize</td>
+                                <td>@item.Height</td>
+                                <td>@item.Weight</td>
+                                <td>@item.HairColor</td>
+                                <td>@item.EyeColor</td>
+                                <td>@item.TravelAvailability</td>
+                                <td>@item.DrivingLicence</td>
+                                <td>@item.Category</td>
+                                <td>@item.IsWorking</td>
+                                <td>@item.Address.City</td>
+                                <td>@item.Status</td>
+                                <td>
+                                    <div class="btn-group-sm">
+                                        <button type="button" class="btn btn-warning btn-flat dropdown-toggle" data-toggle="dropdown">
+                                            <span class="fa fa-cog"></span>
+                                            <span class="caret"></span>
+                                            <span class="sr-only">Toggle Dropdown</span>
+                                        </button>
+                                        <div class="dropdown-menu" role="menu">
+                                            <a class="dropdown-item" href="@Url.Action("Details", "Model", new { id = item.Id })">Details</a>
+                                            <a class="dropdown-item" href="@Url.Action("Update", "Model", new { id = item.Id })">Edit</a>
+                                            <a class="dropdown-item" href="@Url.Action("Delete", "Model", new { id = item.Id })">Delete</a>
+                                        </div>
+                                    </div>
+                                </td>
+
+                            </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+                <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+        </div>
+        <!-- /.col -->
+    </div>
+    <!-- /.row -->
+</section>
+<!-- /.content -->
+<script src="~/Scripts/js/jquery.dataTables.min.js"></script>
+<script src="~/Scripts/js/dataTables.bootstrap4.min.js"></script>
+
+<script>
+    $(function () {
+        $('#example1').DataTable({
+            "paging": true,
+            "lengthChange": false,
+            "searching": true,
+            "ordering": true,
+            "info": true,
+            "autoWidth": true,
+            "responsive": true
+        });
+    });
+</script>
